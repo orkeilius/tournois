@@ -1,0 +1,26 @@
+body {
+    margin: 0;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+nav {
+    display: flex;
+    background-color: black;
+    width: 100%;
+}
+
+nav>a {
+    text-decoration: none;
+    color: white;
+    padding: 0.5em;
+}
+
+nav>a:hover {
+    background-color: gray;
+}
+
+.center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

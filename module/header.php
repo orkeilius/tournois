@@ -3,18 +3,18 @@
     <h1>Vp enterprise</h1>
     <nav>
         <a class="navItem" href="/">Accueil</a>
-        <?php if (isset($_SESSION["user"])) {
-            if (getUserAccess() <= 2) { ?>
-                <a class="navItem" href="addArticle.php"> + ajouter un article</a>
-            <?php } ?>
-            <div style="flex-grow:1"></div>
-            <div class="dropdown">
-                <button class="navItem" href="profile">Profil</button>
-                <div>
-                    <a class="dropdownItem" href="option.php">Option</a>
-                    <a class="dropdownItem" href="action.php?action=logout">Logout</a>
-                </div>
-            </div>
+        <a class="navItem" href="/">Match</a>
+        <a class="navItem" href="/">Joueur</a>
+        <a class="navItem" href="/">Stade</a>
+        <a class="navItem" href="/">Commentateur</a>
+        <div style="flex-grow:1"></div>
+        <?php if (getUserAccess() == 0) {
+            var_dump($_SESSION); ?>
+
+            <a class="navItem" href="edit.php">edit</a>
+            <a class="navItem" href="api/logout.php">logout</a>
+        <?php } else { ?>
+            <a class="navItem" href="login.php">login</a>
         <?php } ?>
     </nav>
 </header>
