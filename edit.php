@@ -15,7 +15,7 @@ include('module/dbTools.php');
             <button class="tablinks" onclick="changeTab(event, 'match')">Ajouter un match</button>
             <button class="tablinks" onclick="changeTab(event, 'joueur')">Ajouter un joueur</button>
             <button class="tablinks" onclick="changeTab(event, 'stade')">Ajouter un stade</button>
-            <button class="tablinks" onclick="changeTab(event, 'commentateur')">commentateur</button>
+            <button class="tablinks" onclick="changeTab(event, 'commentateur')">Ajouter un commentateur</button>
         </div>
 
         <div id="match" class="tabcontent">
@@ -28,26 +28,47 @@ include('module/dbTools.php');
 
         <div id="joueur" class="tabcontent">
             <h3>Ajouter un joueur</h3>
-            <form>
+            <form action="api/editPlayer.php" method="post">
                 <input name="lastName" type="text" placeholder="nom">
-                <input name="firstNale" type="text" placeholder="prenom">
-                <input name="contry" type="text" placeholder="pays">
+                <input name="firstName" type="text" placeholder="prenom"><br>
+                <input name="country" type="text" placeholder="pays"><br>
+                <label for="operation">opération</label><br />
+                <select name="operation">
+                    <option value="0">ajouter</option>
+                    <option value="1">modifier</option>
+                    <option value="2">supprimer</option>
+                </select>
+                <input type="submit" value="envoyer">
             </form>
         </div>
 
         <div id="stade" class="tabcontent">
             <h3>Ajouter un stade</h3>
-            <form>
-                <input name="name" type="text" placeholder="nom">
-                <input name="description" type="text" placeholder="description">
+            <form action="api/editPlace.php" method="post">
+                <input name="name" type="text" placeholder="nom"><br>
+                <input name="description" type="text" placeholder="description"><br>
+                <label for="operation">opération</label><br />
+                <select name="operation">
+                    <option value="0">ajouter</option>
+                    <option value="1">modifier</option>
+                    <option value="2">supprimer</option>
+                </select>
+                <input type="submit" value="envoyer">
             </form>
         </div>
         <div id="commentateur" class="tabcontent">
             <h3>Ajouter un commentateur</h3>
-            <form>
+            <form action="api/editCommentator.php" method="post">
                 <input name="lastName" type="text" placeholder="nom">
-                <input name="firstNale" type="text" placeholder="prenom">
-                <input name="description" type="text" placeholder="description">
+                <input name="firstName" type="text" placeholder="prenom"><br>
+                <input name="description" type="text" placeholder="description"><br>
+                <label for="operation">opération</label><br />
+                <select name="operation">
+                    <option value="0">ajouter</option>
+                    <option value="1">modifier</option>
+                    <option value="2">supprimer</option>
+                </select>
+                <input type="submit" value="envoyer">
             </form>
         </div>
     </section>
