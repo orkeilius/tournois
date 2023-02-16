@@ -15,10 +15,10 @@ $options = array(
 
 $result = filter_input_array(INPUT_POST, $options);
 if (($result["operation"] == 2) and $result["name"] == "") {
-    header("Location: /edit.php?error=valeurs&nbsp;invalid");
+    header("Location: /edit.php?error=valeurs%20invalide");
     return;
 } elseif (($result["operation"] != 2) and in_array('', $result, true)) {
-    header("Location: /edit.php?error=valeurs&nbsp;invalid");
+    header("Location: /edit.php?error=valeurs%20invalide");
     return;
 }
 
@@ -29,7 +29,7 @@ $query->execute();
 $old =  $query->fetch();
 if ($old != false) {
     if ($result["operation"] == 0) {
-        header("Location: /edit.php?error=Le&nbsp;stade&nbsp;existe&nbsp;déjà");
+        header("Location: /edit.php?error=Le%20stade%20existe%20déjà");
         return;
     } else {
         $query = $db->prepare("DELETE FROM `place` WHERE `name`=?");
@@ -38,7 +38,7 @@ if ($old != false) {
     }
 }
 if ($result["operation"] == 2) {
-    header("Location: /edit.php?info=stade&nbsp;supprimée&nbsp;avec&nbsp;succès");
+    header("Location: /edit.php?info=stade%20supprimée%20avec%20succès");
     return;
 }
 var_dump($result);
@@ -47,4 +47,4 @@ $query->bindParam(1, $result["name"]);
 $query->bindParam(2, $result["description"]);
 $query->execute();
 $result =  $query->fetch();
-header("Location: /edit.php?info=Stade&nbsp;crée&nbsp;avec&nbsp;succès");
+header("Location: /edit.php?info=Stade%20crée%20avec%20succès");

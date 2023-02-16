@@ -18,10 +18,10 @@ $options = array(
 
 $result = filter_input_array(INPUT_POST, $options);
 if (($result["operation"] == 2) and ($result["player1"] == "" or $result["player2"] == "")) {
-    header("Location: /edit.php?error=valeurs&nbsp;invalid");
+    header("Location: /edit.php?error=valeurs%20invalide");
     return;
 } elseif (($result["operation"] != 2) and (in_array('', $result, true) or in_array(NULL, $result, true))) {
-    header("Location: /edit.php?error=valeurs&nbsp;invalid");
+    header("Location: /edit.php?error=valeurs%20invalide");
     return;
 }
 
@@ -33,7 +33,7 @@ $query->execute();
 $old =  $query->fetch();
 if ($old != false) {
     if ($result["operation"] == 0) {
-        header("Location: /edit.php?error=Le&nbsp;match&nbsp;existe&nbsp;déjà");
+        header("Location: /edit.php?error=Le%20match%20existe%20déjà");
         return;
     } else {
         $query = $db->prepare("DELETE FROM `game` WHERE `player1`=? AND `player2`=?");
@@ -43,7 +43,7 @@ if ($old != false) {
     }
 }
 if ($result["operation"] == 2) {
-    header("Location: /edit.php?info=match&nbsp;supprimée&nbsp;avec&nbsp;succès");
+    header("Location: /edit.php?info=match%20supprimée%20avec%20succès");
     return;
 }
 $query = $db->prepare("INSERT INTO `game`(`id`, `DATE`, `score1`, `score2`, `done`, `player1`,`player2`, `place`, `commentator`) VALUES (NULL,?,0,0,0,?,?,?,?)");
@@ -54,4 +54,4 @@ $query->bindParam(4, $result["place"]);
 $query->bindParam(5, $result["commentator"]);
 $query->execute();
 $result =  $query->fetch();
-header("Location: /edit.php?info=match&nbsp;crée&nbsp;avec&nbsp;succès");
+header("Location: /edit.php?info=match%20crée%20avec%20succès");

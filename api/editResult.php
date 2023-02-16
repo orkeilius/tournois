@@ -15,7 +15,7 @@ $options = array(
 
 $result = filter_input_array(INPUT_POST, $options);
 if (in_array('', $result, true) or in_array(NULL, $result, true)) {
-    header("Location: /edit.php?error=valeurs&nbsp;invalid");
+    header("Location: /edit.php?error=valeurs%20invalide");
     return;
 }
 
@@ -25,7 +25,7 @@ $query->bindParam(1, $result["game"]);
 $query->execute();
 $old =  $query->fetch();
 if ($old["done"] == 1) {
-    header("Location: /edit.php?error=Le&nbsp;resultat&nbsp;existe&nbsp;déjà");
+    header("Location: /edit.php?error=Le%20resultat%20existe%20déjà");
     return;
 }
 var_dump($result);
@@ -35,4 +35,4 @@ $query->bindParam(2, $result["score2"]);
 $query->bindParam(3, $result["game"]);
 $query->execute();
 $result =  $query->fetch();
-header("Location: /edit.php?info=resulta&nbsp;ajouté&nbsp;avec&nbsp;succès");
+header("Location: /edit.php?info=resulta%20ajouté%20avec%20succès");
