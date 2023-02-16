@@ -36,7 +36,7 @@ if ($old != false) {
         header("Location: /edit.php?error=Le&nbsp;match&nbsp;existe&nbsp;déjà");
         return;
     } else {
-        $query = $db->prepare("DELETE FROM `player` WHERE `player1`=? AND `player2`=?");
+        $query = $db->prepare("DELETE FROM `game` WHERE `player1`=? AND `player2`=?");
         $query->bindParam(1, $result["player1"]);
         $query->bindParam(2, $result["player2"]);
         $query->execute();
