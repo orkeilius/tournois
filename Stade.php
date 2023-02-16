@@ -6,6 +6,7 @@ include('module/dbTools.php');
 
 <head>
     <?php include("module/head.php") ?>
+    <link rel="stylesheet" href="style/list.css">
 </head>
 
 <body>
@@ -14,11 +15,12 @@ include('module/dbTools.php');
         <?php $query = $db->prepare("SELECT * FROM `place`");
         $query->execute();
         $results = $query->fetchAll(PDO::FETCH_ASSOC);
-        foreach ($results as $elem) {
-            echo $elem["name"] . " | " . $elem["description"] . "<br>";
-        }
-        1
-        ?>
+        foreach ($results as $elem) { ?>
+            <div>
+            <h3><?php echo $elem["name"] ?></h3>
+            <p><?php echo $elem["description"] ?></p>
+        </div>
+        <?php } ?>
 
     </section>
 </body>

@@ -1,0 +1,17 @@
+section{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+}
+section > div{
+    border-radius: 3em;
+    padding: 1em;
+    min-width: 100px;
+    width: fit-content;
+    margin: 1em;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+}
+
+h3{
+    width: fit-content;
+}

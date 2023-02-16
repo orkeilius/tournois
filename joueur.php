@@ -6,19 +6,21 @@ include('module/dbTools.php');
 
 <head>
     <?php include("module/head.php") ?>
+    <link rel="stylesheet" href="style/list.css">
 </head>
 
 <body>
     <?php include("module/header.php"); ?>
-    <section>
+    <section class="wrapper">
         <?php $query = $db->prepare("SELECT * FROM `player`");
         $query->execute();
         $results = $query->fetchAll(PDO::FETCH_ASSOC);
-        foreach ($results as $elem) {
-            echo $elem["firstName"] . " | " . $elem["lastName"] . " | " . $elem["country"] . "<br>";
-        }
-        1
-        ?>
+        foreach ($results as $elem) { ?>
+            <div>
+                <h3><?php echo $elem["firstName"] . " " . $elem["lastName"] ?></h3>
+                <p><?php echo $elem["country"] ?></p>
+            </div>
+            <?php } ?>
 
     </section>
 </body>
