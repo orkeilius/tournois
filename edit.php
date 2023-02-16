@@ -10,7 +10,18 @@ include 'module/dbTools.php';
 </head>
 
 <body>
-    <?php include 'module/header.php'; ?>
+    <?php include 'module/header.php'; 
+    if(isset($_GET["error"])){ ?>
+        <button class="toast error">
+            <?php echo $_GET["error"] ?> 
+        </button>
+    <?php }  else if(isset($_GET["info"]))  { ?>
+        <button class="toast info">
+            <?php echo $_GET["info"] ?> 
+        </button>
+    <?php } ?>
+
+
     <section>
         <div class="tab">
             <button class="tablinks" onclick="changeTab(event, 'match')">Ajouter un match</button>
@@ -26,7 +37,7 @@ include 'module/dbTools.php';
                 <label for="date">jour</label><br>
                 <input name="date" type="date"><br>
                 <label for="player1">joueurs </label><br>
-                <select name="player1">
+                <select name="player1" require>
                     <?php
                     $query = $db->prepare('SELECT * FROM `player`');
                     $query->execute();
@@ -43,7 +54,7 @@ include 'module/dbTools.php';
                     1;
                     ?>
                 </select>
-                <select name="player2">
+                <select name="player2" require>
                     <?php
                     foreach ($results as $elem) {
                         echo "<option value='" .
@@ -104,7 +115,7 @@ include 'module/dbTools.php';
             <h3>Ajouter un resultat</h3>
             <form action="api/editResult.php" method="post">
             <label for="game">match</label><br /> 
-            <select name="game">
+            <select name="game" require>
                     <?php
                     $query = $db->prepare('SELECT game.id as id, p1.firstName as p1_first, p1.lastName as p1_last, 
                                            p2.firstName as p2_first, p2.lastName as p2_last 
@@ -127,8 +138,8 @@ include 'module/dbTools.php';
                     ?>
                 </select><br>
                 <label for="game">score</label><br /> 
-                <input name="score1" type="number" placeholder="score du joueur 1">
-                <input name="score2" type="number" placeholder="score du joueur 2"><br>
+                <input name="score1" type="number" placeholder="score du joueur 1" require>
+                <input name="score2" type="number" placeholder="score du joueur 2" require><br>
                 <input type="submit" value="envoyer">
             </form>
         </div>
@@ -136,8 +147,8 @@ include 'module/dbTools.php';
         <div id="joueur" class="tabcontent">
             <h3>Ajouter un joueur</h3>
             <form action="api/editPlayer.php" method="post">
-                <input name="lastName" type="text" placeholder="nom">
-                <input name="firstName" type="text" placeholder="prenom"><br>
+                <input name="lastName" type="text" placeholder="nom" require>
+                <input name="firstName" type="text" placeholder="prenom" require><br>
                 <input name="country" type="text" placeholder="pays"><br>
                 <label for="operation">opération</label><br />
                 <select name="operation">
@@ -152,7 +163,7 @@ include 'module/dbTools.php';
         <div id="stade" class="tabcontent">
             <h3>Ajouter un stade</h3>
             <form action="api/editPlace.php" method="post">
-                <input name="name" type="text" placeholder="nom"><br>
+                <input name="name" type="text" placeholder="nom" require><br>
                 <input name="description" type="text" placeholder="description"><br>
                 <label for="operation">opération</label><br />
                 <select name="operation">
@@ -166,8 +177,8 @@ include 'module/dbTools.php';
         <div id="commentateur" class="tabcontent">
             <h3>Ajouter un commentateur</h3>
             <form action="api/editCommentator.php" method="post">
-                <input name="lastName" type="text" placeholder="nom">
-                <input name="firstName" type="text" placeholder="prenom"><br>
+                <input name="lastName" type="text" placeholder="nom" require>
+                <input name="firstName" type="text" placeholder="prenom" require><br>
                 <input name="description" type="text" placeholder="description"><br>
                 <label for="operation">opération</label><br />
                 <select name="operation">

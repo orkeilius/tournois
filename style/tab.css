@@ -40,3 +40,16 @@
     height: 100%;
     border: none;
 }
+.toast{
+    border: none;
+    width: 100%;
+    padding: 0.5em;
+    color: white;
+}
+.error{
+    background-color: red;
+}
+
+.info{
+    background-color: forestgreen;
+}
