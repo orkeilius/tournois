@@ -1,6 +1,6 @@
 <?php ?>
 <header>
-    <h1>Vp enterprise</h1>
+    <h1 style="padding-left: 10px"> Le tournois octogone</h1>
     <nav>
         <a class="navItem" href="/">Accueil</a>
         <a class="navItem" href="match.php">Match</a>
