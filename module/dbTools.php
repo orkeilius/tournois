@@ -3,7 +3,7 @@ if(! isset($_GET["error"])){
     $_GET["error"] = NULL;
 }
 try{
-    $db = new PDO('mysql:dbname=tournoi;host=127.0.0.1', "root", "");
+    $db = new PDO('mysql:dbname=tournoi;host=127.0.0.1', "phpmyadmin", "root");
 } catch(PDOException $e){
     die ("DB Error".$e);
 }
