@@ -13,14 +13,20 @@ nav>a {
     text-decoration: none;
     color: white;
     padding: 0.5em;
+    transition: all 0.5s;
+    background-color: black;
 }
 
 nav>a:hover {
-    background-color: gray;
+    
+    transform: scale(1.2);
 }
 
 .center {
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+.texte{
+    padding-left: 10px
 }

@@ -1,5 +1,11 @@
 <?php session_start();
 include 'module/dbTools.php';
+
+
+if (getUserAccess() != 0) {
+    header("Location: /");
+    return;
+}
 ?>
 <!DOCTYPE html>
 <html>

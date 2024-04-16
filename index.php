@@ -9,5 +9,5 @@ include('module/dbTools.php');
 </head>
 <body>
     <?php include("module/header.php"); ?>
-    <p style="padding-left: 10px">le tournois ou les meilleur combatant s'affronte pour prouvé leur valeurs</p>
+    <p class="texte">le tournois ou les meilleur combatant s'affronte pour prouvé leur valeurs</p>
 </body>
