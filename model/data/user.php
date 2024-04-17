@@ -22,9 +22,9 @@
         $this->description = $description;
         $this->role = Role::from($role);
     }
-}
-class UserRepository{
+    
 
+    // -- repository
     public static function getAllUser(): array
     {
         $db = DbConnection::getConnection();
@@ -64,34 +64,35 @@ class UserRepository{
         );
     }
 
-    public static function saveUser(User $user)
+    public function save()
     {
         $db = DbConnection::getConnection();
-        if ($user->id == -1) {
+        if ($this->id == -1) {
             $query = $db->prepare(
                 "INSERT INTO `user` (`firstName`, `lastName`, `country`, `description`, `role`) VALUES (?, ?, ?, ?, ?)" 
             );
             $query->execute(
                 [
-                    $user->firstName,
-                    $user->lastName,
-                    $user->country,
-                    $user->description,
-                    $user->role->value
+                    $this->firstName,
+                    $this->lastName,
+                    $this->country,
+                    $this->description,
+                    $this->role->value
                 ]
             );
+            $this->id = DbConnection::getLastInseredId();
         } else {
             $query = $db->prepare(
                 "UPDATE `user` SET `firstName` = ?, `lastName` = ?, `country` = ?, `description` = ?, `role` = ? WHERE `user_id` = ?"
             );
             $query->execute(
                 [
-                    $user->firstName,
-                    $user->lastName,
-                    $user->country,
-                    $user->description,
-                    $user->role->value,
-                    $user->id
+                    $this->firstName,
+                    $this->lastName,
+                    $this->country,
+                    $this->description,
+                    $this->role->value,
+                    $this->id
                 ]
             );
         }

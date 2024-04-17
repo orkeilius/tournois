@@ -1,5 +1,5 @@
 <div>
-    <form method="post">
+    <form method="post" action="/admin/user">
         <label for="role">role</label>
         <input type="number" name="id" id="id" hidden value="<?php echo $formUser->id ?>">
         <select name="role" id="role">

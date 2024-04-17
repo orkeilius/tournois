@@ -6,7 +6,7 @@ function run()
 {
     handlePostRequest();
     handleGetRequest();
-    $users = UserRepository::getAllUser();
+    $users = User::getAllUser();
     $formUser = getRequestedUser($users);
 
     $elemTemplate = "template/page/admin/user.php";
@@ -50,7 +50,7 @@ function handlePostRequest()
     }
 
     $user = new User($result["firstName"], $result["lastName"], $result["country"], $result["description"], $result["role"], $result["id"]);
-    UserRepository::saveUser($user);
+    $user->save();
 
 }
 
@@ -67,7 +67,7 @@ function handleGetRequest()
     if (in_array(null, $result, true)) {
         header("Location: /admin/user?error=valeurs%20invalide");
     }
-    UserRepository::deleteUserById($result["delete"]);
+    User::deleteUserById($result["delete"]);
 }
 
 run();

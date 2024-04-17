@@ -18,7 +18,7 @@
         return self::$connection;
     }
 
-    public static function isUserAdmin(){
+    public static function isUserAdmin():bool{
         if (! isset($_SESSION["user"])){
             return false;
         }
@@ -30,5 +30,11 @@
         $result =  $query->fetch();
         return $result["count(*)"] == 1;
     }
-
+    public static function getLastInseredId():int{
+        $db = DbConnection::getConnection();
+        $query = $db->prepare("SELECT LAST_INSERT_ID()");
+        $query->execute();
+        $result =  $query->fetch();
+        return $result["LAST_INSERT_ID()"];
+    }
 }
