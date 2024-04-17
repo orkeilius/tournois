@@ -45,8 +45,10 @@ function handlePostRequest()
     if ($result == null) {
         return;
     }
-    if (in_array(null, $result, true)) {
+    var_dump($result);
+    if (in_array("", $result)) {
         header("Location: /admin/user?error=valeurs%20invalide");
+        return;
     }
 
     $user = new User($result["firstName"], $result["lastName"], $result["country"], $result["description"], $result["role"], $result["id"]);
