@@ -1,18 +1,22 @@
 <?php
 session_start();
-var_dump($_GET["url"]);
 include_once "model/utils/dbConnection.php";
-
-include_once "template/head.php";
-include_once "template/header.php";
 
 $db = DbConnection::getConnection();
 
+$url = trim($_GET["url"],"/");
+
+ob_start()
 ?>
+
+<head>
+    <?php include_once "template/head.php"; ?>
+</head>
 
 <body>
     <?php
-    switch ($_GET["url"]) {
+    include_once "template/header.php";
+    switch ($url) {
         case 'login':
             include_once "controller/login.php";
             break;
@@ -27,3 +31,5 @@ $db = DbConnection::getConnection();
     ;
     ?>
 </body>
+
+<?php $content = ob_get_flush();
