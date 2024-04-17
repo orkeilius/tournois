@@ -1,7 +1,7 @@
 <div>
     <form method="post" action="/admin/user">
-        <label for="role">role</label>
         <input type="number" name="id" id="id" hidden value="<?php echo $formUser->id ?>">
+        <label for="role">role</label>
         <select name="role" id="role">
             <option value="player" <?php echo ($formUser->role != Role::player) ?: "selected" ?>>player</option>
             <option value="judge" <?php echo ($formUser->role != Role::judge) ?: "selected" ?>>judge</option>
@@ -24,7 +24,7 @@
     <table>
         <thead>
             <tr>
-            <th scope="col"></th>
+                <th scope="col"></th>
                 <th scope="col">role</th>
                 <th scope="col">first name</th>
                 <th scope="col">last name</th>
