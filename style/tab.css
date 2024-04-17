@@ -13,7 +13,7 @@
 }
 
 /* Style the buttons that are used to open the tab content */
-.tab button {
+.tab a {
     display: block;
     background-color: inherit;
     color: black;
@@ -26,11 +26,11 @@
     transition: 0.3s;
 }
 
-.tab button:hover {
+.tab a:hover {
     background-color: #ddd;
 }
 
-.tab button.active {
+.tab a.active {
     background-color: #ccc;
 }
 

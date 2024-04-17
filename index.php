@@ -23,7 +23,12 @@ ob_start()
         case 'logout':
             include_once "controller/logout.php";
             break;
-
+        case 'admin':
+        case 'admin/user':
+            if(DbConnection::isUserAdmin()){
+                include_once "controller/admin/user.php";
+                break;
+            }
         default:
             include_once "controller/home.php";
             break;
