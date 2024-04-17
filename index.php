@@ -1,13 +1,29 @@
-<?php session_start();
-include('module/dbTools.php');
-?>
-<!DOCTYPE html>
-<html>
+<?php
+session_start();
+var_dump($_GET["url"]);
+include_once "model/utils/dbConnection.php";
 
-<head>
-    <?php include("module/head.php") ?>
-</head>
+include_once "template/head.php";
+include_once "template/header.php";
+
+$db = DbConnection::getConnection();
+
+?>
+
 <body>
-    <?php include("module/header.php"); ?>
-    <p class="texte">le tournois ou les meilleur combatant s'affronte pour prouvé leur valeurs</p>
+    <?php
+    switch ($_GET["url"]) {
+        case 'login':
+            include_once "controller/login.php";
+            break;
+        case 'logout':
+            include_once "controller/logout.php";
+            break;
+
+        default:
+            include_once "controller/home.php";
+            break;
+    }
+    ;
+    ?>
 </body>

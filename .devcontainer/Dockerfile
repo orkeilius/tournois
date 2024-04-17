@@ -7,6 +7,7 @@ RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
 
 # Install php-mysql driver
 RUN docker-php-ext-install mysqli pdo pdo_mysql
+RUN a2enmod rewrite
 
 # [Optional] Uncomment this section to install additional OS packages.
 # RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
