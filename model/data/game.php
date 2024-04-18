@@ -1,26 +1,131 @@
-<?php class Game{
+<?php class Game
+{
     private int $id;
-    public readonly Player $player1;
-    public readonly Player $player2;
-    public readonly Player $judge;
-    public readonly Place $place;
-    public readonly string $date;
-    public readonly Array $score;
-    
-    public function __construct(Player $player1, Player $player2, Player $judge, Place $place, string $date, Array $score = null){
-        $this->player1 = $player1;
-        $this->player2 = $player2;
+    private array $player;
+    private User $judge;
+    private Place $place;
+    private DateTime $date;
+    private array $score;
+
+    public function __get($elem)
+    {
+        return $this->$elem;
+    }
+
+    public function __construct(array $player, ?User $judge, ?Place $place, DateTime $date, int $id = -1, array $score = array(null, null))
+    {
+        $this->id = $id;
+        $this->player = $player;
         $this->judge = $judge;
         $this->place = $place;
         $this->date = $date;
         $this->score = $score;
     }
 
-    public function setScore(Array $score){
-        if ($this->score == null){
+    public function setScore(array $score)
+    {
+        if ($this->score == null) {
             $this->score = $score;
-        }else{
+        } else {
             throw new Exception("Score already set");
         }
+        $this->save();
     }
+
+    // -- repository
+    public static function getAllGame(): array
+    {
+        $db = DbConnection::getConnection();
+        $statement = $db->query(
+            "SELECT * FROM `game`"
+        );
+        $games = [];
+        while (($row = $statement->fetch())) {
+            $game = new Game(
+                array(
+                    User::getUserById($row["player1"]),
+                    User::getUserById($row["player2"])
+                ),
+                User::getUserById($row["judge"]),
+                Place::getPlaceById($row["place"]),
+                new DateTime($row["date"]),
+                $row["game_id"],
+                array(
+                    $row["score1"],
+                    $row["score2"]
+                )
+            );
+
+            $games[] = $game;
+        }
+
+        return $games;
+    }
+    public static function getGameById(int $id): Game
+    {
+        $db = DbConnection::getConnection();
+        $query = $db->prepare("SELECT * FROM `game` WHERE `game_id` = ?");
+        $query->execute([$id]);
+        $row = $query->fetch();
+        return new Game(
+            array(
+                User::getUserById($row["player1"]),
+                User::getUserById($row["player2"])
+            ),
+            User::getUserById($row["judge"]),
+            Place::getPlaceById($row["place"]),
+            new DateTime($row["date"]),
+            $row["game_id"],
+            array(
+                $row["score1"],
+                $row["score2"]
+            )
+        );
+    }
+
+    public function save()
+    {
+        $db = DbConnection::getConnection();
+        if ($this->id == -1) {
+            $query = $db->prepare(
+                "INSERT INTO `game` (`player1`, `player2`, `judge`, `place`, `date`, `score1`, `score2`) VALUES (?, ?, ?, ?, ?, ?, ?)"
+            );
+            $query->execute(
+                [
+                    $this->player[0]->id,
+                    $this->player[1]->id,
+                    $this->judge->id,
+                    $this->place->id,
+                    $this->date->format('Y-m-d H:i:s'),
+                    $this->score[0],
+                    $this->score[1]
+                ]
+            );
+            DbConnection::getLastInseredId();
+        } else {
+            $query = $db->prepare(
+                "UPDATE `game` SET `player1` = ?, `player2` = ?, `judge` = ?, `place` = ?, `date` = ?, `score1` = ?, `score2` = ? WHERE `game_id` = ?"
+            );
+            $query->execute(
+                [
+                    $this->player[0]->id,
+                    $this->player[1]->id,
+                    $this->judge->id,
+                    $this->place->id,
+                    $this->date->format('Y-m-d H:i:s'),
+                    $this->score[0],
+                    $this->score[1],
+                    $this->id
+                ]
+            );
+        }
+    }
+
+    public static function deleteGameById(int $id)
+    {
+        $db = DbConnection::getConnection();
+        $query = $db->prepare("DELETE FROM `game` WHERE `game_id` = ?");
+        $query->execute([$id]);
+    }
+
 }

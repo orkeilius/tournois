@@ -4,10 +4,10 @@ include_once "model/utils/dbConnection.php";
 
 $db = DbConnection::getConnection();
 
-$url = trim($_GET["url"],"/");
+$url = trim($_GET["url"], "/");
 
 ob_start()
-?>
+    ?>
 
 <head>
     <?php include_once "template/head.php"; ?>
@@ -25,15 +25,20 @@ ob_start()
             break;
         case 'admin':
         case 'admin/user':
-            if(DbConnection::isUserAdmin()){
+            if (DbConnection::isUserAdmin()) {
                 include_once "controller/admin/user.php";
                 break;
             }
         case 'admin/place':
-                if(DbConnection::isUserAdmin()){
-                    include_once "controller/admin/place.php";
-                    break;
-                }
+            if (DbConnection::isUserAdmin()) {
+                include_once "controller/admin/place.php";
+                break;
+            }
+        case 'admin/game':
+            if (DbConnection::isUserAdmin()) {
+                include_once "controller/admin/game.php";
+                break;
+            }
         default:
             include_once "controller/home.php";
             break;
