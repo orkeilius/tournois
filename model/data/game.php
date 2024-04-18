@@ -34,12 +34,7 @@
 
     public function setScore(array $score)
     {
-        if ($this->score == null) {
-            $this->score = $score;
-        } else {
-            throw new Exception("Score already set");
-        }
-        $this->save();
+        $this->score = $score;
     }
 
     // -- repository

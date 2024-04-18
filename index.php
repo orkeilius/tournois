@@ -39,6 +39,11 @@ ob_start()
                 include_once "controller/admin/game.php";
                 break;
             }
+        case 'admin/result':
+            if (DbConnection::isUserAdmin()) {
+                include_once "controller/admin/result.php";
+                break;
+            }
         default:
             include_once "controller/home.php";
             break;
