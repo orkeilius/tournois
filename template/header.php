@@ -4,9 +4,9 @@
     <nav>
         <a class="navItem" href="/">Accueil</a>
         <a class="navItem" href="/game">Game</a>
-        <a class="navItem" href="joueur.php">Joueur</a>
-        <a class="navItem" href="stade.php">Stade</a>
-        <a class="navItem" href="commentateur.php">Commentateur</a>
+        <a class="navItem" href="/player">Player</a>
+        <a class="navItem" href="/judge">Judge</a>
+        <a class="navItem" href="/place">Place</a>
         <div style="flex-grow:1"></div>
         <?php if (DbConnection::isUserAdmin()) { ?>
 

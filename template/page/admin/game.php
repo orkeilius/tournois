@@ -70,19 +70,19 @@
             </tr>
         </thead>
         <tbody>
-            <?php foreach ($games as $game) {
+            <?php foreach ($games as $user) {
                 ?>
                 <tr>
                     <td>
-                        <a href="/admin/game?id=<?php echo $game->id ?>">edit</a>
-                        <a href="/admin/game?delete=<?php echo $game->id ?>">delete</a>
+                        <a href="/admin/game?id=<?php echo $user->id ?>">edit</a>
+                        <a href="/admin/game?delete=<?php echo $user->id ?>">delete</a>
                     </td>
-                    <td><?php echo $game->player[0]->firstName . " " . $game->player[0]->lastName ?></td>
-                    <td><?php echo $game->player[1]->firstName . " " . $game->player[1]->lastName ?></td>
-                    <td><?php echo $game->judge->firstName . " " . $game->judge->lastName ?></td>
-                    <td><?php echo $game->place->name ?></td>
-                    <td><?php echo $game->date->format("Y-m-d H:i") ?></td>
-                    <td><?php echo $game->score[0] . "-" . $game->score[1] ?></td>
+                    <td><?php echo $user->player[0]->firstName . " " . $user->player[0]->lastName ?></td>
+                    <td><?php echo $user->player[1]->firstName . " " . $user->player[1]->lastName ?></td>
+                    <td><?php echo $user->judge->firstName . " " . $user->judge->lastName ?></td>
+                    <td><?php echo $user->place->name ?></td>
+                    <td><?php echo $user->date->format("Y-m-d H:i") ?></td>
+                    <td><?php echo $user->score[0] . "-" . $user->score[1] ?></td>
                 </tr>
 
             <?php } ?>

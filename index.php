@@ -20,12 +20,23 @@ ob_start()
         case 'game':
             include_once "controller/game.php";
             break;
+        case 'player':
+            include_once "controller/player.php";
+            break;
+        case 'judge':
+            include_once "controller/judge.php";
+            break;
+        case 'place':
+            include_once "controller/place.php";
+            break;
+
         case 'login':
             include_once "controller/login.php";
             break;
         case 'logout':
             include_once "controller/logout.php";
             break;
+        
         case 'admin':
         case 'admin/user':
             if (DbConnection::isUserAdmin()) {
