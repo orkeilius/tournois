@@ -14,6 +14,16 @@
 
     public function __construct(array $player, ?User $judge, ?Place $place, DateTime $date, int $id = -1, array $score = array(null, null))
     {
+        if ($player[0]->role != Role::player or $player[1]->role != Role::player) {
+            throw new Exception("player invalid role");
+        }
+        if ($judge->role != Role::judge) {
+            throw new Exception("judge invalid role");
+        }
+        if ($player[0] == $player[1] and $player[0]->id != -1) {
+            throw new Exception("duplicate player");
+        }
+
         $this->id = $id;
         $this->player = $player;
         $this->judge = $judge;

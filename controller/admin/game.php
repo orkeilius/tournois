@@ -61,18 +61,22 @@ function handlePostRequest()
         header("Location: /admin/game?error=invalide%20values");
         return;
     }
+    try {
+        $game = new Game(
+            array(
+                User::getUserById($result["player1"]),
+                User::getUserById($result["player2"])
+            ),
+            User::getUserById($result["judge"]),
+            Place::getPlaceById($result["place"]),
+            $date,
+            $result["id"]
+        );
+        $game->save();
+    } catch (Exception $e) {
+        header("Location: /admin/game?error=invalide%20values");
+    }
 
-    $game = new Game(
-        array(
-            User::getUserById($result["player1"]),
-            User::getUserById($result["player2"])
-        ),
-        User::getUserById($result["judge"]),
-        Place::getPlaceById($result["place"]),
-        $date,
-        $result["id"]
-    );
-    $game->save();
 
 }
 
