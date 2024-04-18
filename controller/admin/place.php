@@ -43,7 +43,7 @@ function handlePostRequest()
         return;
     }
     if (in_array("", $result)) {
-        header("Location: /admin/place?error=valeurs%20invalide");
+        header("Location: /admin/place?error=invalide%20values");
         return;
     }
 
@@ -63,7 +63,7 @@ function handleGetRequest()
         return;
     }
     if (in_array(null, $result, true)) {
-        header("Location: /admin/place?error=valeurs%20invalide");
+        header("Location: /admin/place?error=invalide%20values");
     }
     Place::deletePlaceById($result["delete"]);
 }

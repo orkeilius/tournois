@@ -58,7 +58,7 @@ function handlePostRequest()
     }
     $date = DateTime::createFromFormat("Y-m-d\TH:i", $result["date"]);
     if (in_array("", $result) or $date === false) {
-        header("Location: /admin/game?error=valeurs%20invalide");
+        header("Location: /admin/game?error=invalide%20values");
         return;
     }
 
@@ -87,7 +87,7 @@ function handleGetRequest()
         return;
     }
     if (in_array(null, $result, true)) {
-        header("Location: /admin/game?error=valeurs%20invalide");
+        header("Location: /admin/game?error=invalide%20values");
     }
     Game::deleteGameById($result["delete"]);
 }

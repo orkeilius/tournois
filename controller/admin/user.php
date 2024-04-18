@@ -46,7 +46,7 @@ function handlePostRequest()
         return;
     }
     if (in_array("", $result)) {
-        header("Location: /admin/user?error=valeurs%20invalide");
+        header("Location: /admin/user?error=invalide%20values");
         return;
     }
 
@@ -66,7 +66,7 @@ function handleGetRequest()
         return;
     }
     if (in_array(null, $result, true)) {
-        header("Location: /admin/user?error=valeurs%20invalide");
+        header("Location: /admin/user?error=invalide%20values");
     }
     User::deleteUserById($result["delete"]);
 }
