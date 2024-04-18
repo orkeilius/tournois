@@ -4,32 +4,46 @@
         <label for="player1">player 1</label>
         <select name="player1" id="player1">
             <?php foreach ($users as $user) {
-                ?>
-                <option value="<?php echo $user->id ?>" <?php echo $formGame->player[0]->id == $user->id ? "selected" : "" ?>><?php echo $user->firstName." ".$user->lastName ?></option>
-            <?php } ?>
+                if ($user->role == Role::player) {
+                    ?>
+                    <option value="<?php echo $user->id ?>" <?php echo $formGame->player[0]->id == $user->id ? "selected" : "" ?>>
+                        <?php echo $user->firstName . " " . $user->lastName ?>
+                    </option>
+                <?php }
+            } ?>
         </select>
-        
+
         <label for="player2">player 2</label>
         <select name="player2" id="player2">
             <?php foreach ($users as $user) {
-                ?>
-                <option value="<?php echo $user->id ?>" <?php echo $formGame->player[1]->id == $user->id ? "selected" : "" ?>><?php echo $user->firstName." ".$user->lastName ?></option>
-            <?php } ?>
+                if ($user->role == Role::player) {
+                    ?>
+                    <option value="<?php echo $user->id ?>" <?php echo $formGame->player[1]->id == $user->id ? "selected" : "" ?>>
+                        <?php echo $user->firstName . " " . $user->lastName ?>
+                    </option>
+                <?php }
+            } ?>
         </select>
 
         <label for="judge">judge</label>
         <select name="judge" id="judge">
             <?php foreach ($users as $user) {
-                ?>
-                <option value="<?php echo $user->id ?>" <?php echo $formGame->judge->id == $user->id ? "selected" : "" ?>><?php echo $user->firstName." ".$user->lastName ?></option>
-            <?php } ?>
+                if ($user->role == Role::judge) {
+                    ?>
+                    <option value="<?php echo $user->id ?>" <?php echo $formGame->judge->id == $user->id ? "selected" : "" ?>>
+                        <?php echo $user->firstName . " " . $user->lastName ?>
+                    </option>
+                <?php }
+            } ?>
         </select>
 
         <label for="place">place</label>
         <select name="place" id="place">
             <?php foreach ($places as $place) {
                 ?>
-                <option value="<?php echo $place->id ?>" <?php echo $formGame->place->id == $place->id ? "selected" : "" ?>><?php echo $place->name ?></option>
+                <option value="<?php echo $place->id ?>" <?php echo $formGame->place->id == $place->id ? "selected" : "" ?>>
+                    <?php echo $place->name ?>
+                </option>
             <?php } ?>
         </select>
 
@@ -63,12 +77,12 @@
                         <a href="/admin/game?id=<?php echo $game->id ?>">edit</a>
                         <a href="/admin/game?delete=<?php echo $game->id ?>">delete</a>
                     </td>
-                    <td><?php echo $game->player[0]->firstName." ".$game->player[0]->lastName ?></td>
-                    <td><?php echo $game->player[1]->firstName." ".$game->player[1]->lastName ?></td>
-                    <td><?php echo $game->judge->firstName." ".$game->judge->lastName ?></td>
+                    <td><?php echo $game->player[0]->firstName . " " . $game->player[0]->lastName ?></td>
+                    <td><?php echo $game->player[1]->firstName . " " . $game->player[1]->lastName ?></td>
+                    <td><?php echo $game->judge->firstName . " " . $game->judge->lastName ?></td>
                     <td><?php echo $game->place->name ?></td>
                     <td><?php echo $game->date->format("Y-m-d H:i") ?></td>
-                    <td><?php echo $game->score[0]."-".$game->score[1] ?></td>
+                    <td><?php echo $game->score[0] . "-" . $game->score[1] ?></td>
                 </tr>
 
             <?php } ?>
