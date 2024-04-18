@@ -1,4 +1,8 @@
-<?php class Game
+<?php 
+require_once "model/data/user.php";
+require_once "model/data/place.php";    
+
+class Game
 {
     private int $id;
     private array $player;
@@ -12,7 +16,7 @@
         return $this->$elem;
     }
 
-    public function __construct(array $player, ?User $judge, ?Place $place, DateTime $date, int $id = -1, array $score = array(null, null))
+    public function __construct(array $player, User $judge, Place $place, DateTime $date, int $id = -1, array $score = array(null, null))
     {
         if ($player[0]->role != Role::player or $player[1]->role != Role::player) {
             throw new Exception("player invalid role");

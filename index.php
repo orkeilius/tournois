@@ -17,6 +17,9 @@ ob_start()
     <?php
     include_once "template/header.php";
     switch ($url) {
+        case 'game':
+            include_once "controller/game.php";
+            break;
         case 'login':
             include_once "controller/login.php";
             break;
