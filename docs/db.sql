@@ -15,6 +15,10 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
+
+CREATE DATABASE IF NOT EXISTS tournois;
+
+
 --
 -- Table structure for table `admin`
 --
@@ -106,6 +110,14 @@ CREATE TABLE `user` (
 
 -- Dump completed on 2024-04-19  9:30:32
 
+
+
+-- add privilege
+
+GRANT Delete ON tournois.* TO 'mariadb'@'%';
+GRANT Insert ON tournois.* TO 'mariadb'@'%';
+GRANT Update ON tournois.* TO 'mariadb'@'%';
+GRANT Select ON tournois.* TO 'mariadb'@'%';
 
 --  ! add admin account
 
