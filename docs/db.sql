@@ -109,4 +109,4 @@ CREATE TABLE `user` (
 
 --  ! add admin account
 
-INSERT INTO `user`(`user`, `password`) VALUES ('admin','$2y$10$S/njclznUmSfEd1G7SXNquQ.QsO2IkbuzQq./oWVdYU86Bc3wGEXO')
+INSERT INTO `admin`(`user`, `password`) VALUES ('admin','$2y$10$S/njclznUmSfEd1G7SXNquQ.QsO2IkbuzQq./oWVdYU86Bc3wGEXO')
