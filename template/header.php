@@ -1,6 +1,6 @@
 <?php ?>
 <header>
-    <h1 style="padding-left: 10px"> Le tournois octogone</h1>
+    <h1 style="padding-left: 10px">Tournaments</h1>
     <nav>
         <a class="navItem" href="/">Accueil</a>
         <a class="navItem" href="/game">Game</a>
